@@ -1,6 +1,7 @@
 package com.carrefour.driveanddeliver.service.impl;
 
 import com.carrefour.driveanddeliver.enums.DeliveryMethod;
+import com.carrefour.driveanddeliver.enums.TimeSlot;
 import com.carrefour.driveanddeliver.service.DeliveryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,9 +31,17 @@ public class DeliveryServiceTest {
 
     @Test
     public void testChooseDeliveryMethod() {
-        DeliveryMethod method = deliveryService.chooseDeliveryMethod(DeliveryMethod.DRIVE);
-        assertNotNull(method);
-        assertEquals(DeliveryMethod.DRIVE, method);
+        Long customerId = 1L;
+        DeliveryMethod chosenMethod = deliveryService.chooseDeliveryMethod(customerId, DeliveryMethod.DELIVERY);
+        assertNotNull(chosenMethod);
+        assertEquals(DeliveryMethod.DELIVERY, chosenMethod);
     }
 
+    @Test
+    public void testChooseTimeSlot() {
+        Long customerId = 1L;
+        TimeSlot chosenTimeSlot = deliveryService.chooseTimeSlot(customerId, TimeSlot.NINE_AM);
+        assertNotNull(chosenTimeSlot);
+        assertEquals(TimeSlot.NINE_AM, chosenTimeSlot);
+    }
 }
